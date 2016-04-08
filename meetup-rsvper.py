@@ -194,15 +194,19 @@ def rsvp_for_group_events(group_id):
 
         my_rsvp = get_my_rsvp(event['id'])
         if not my_rsvp:
-            if event['yes_rsvp_count'] >= event['rsvp_limit']:
-                log('[%s] Cannot RSVP to %s, the event is full. Please visit '
-                    '%s to add yourself to the waiting list if one is '
-                    'available.' % (
-                    event['group']['name'], 
-                    event['name'], 
-                    event['event_url']
-                ))
-            elif rsvp_yes(event_id):
+            try:
+                # errors when event objets no longer include the key 'rsvp_limit'
+                if event['yes_rsvp_count'] >= event['rsvp_limit']:
+                    log('[%s] Cannot RSVP to %s, the event is full. Please visit '
+                        '%s to add yourself to the waiting list if one is '
+                        'available.' % (
+                        event['group']['name'], 
+                        event['name'], 
+                        event['event_url']
+                    ))
+            except KeyError:
+                return 0
+            if rsvp_yes(event_id):
                 log('[%s] RSVP\'d yes to "%s" (%s)' % (group_name, event_name,
                                                        event_url)
                 )
