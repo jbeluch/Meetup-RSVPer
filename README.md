@@ -27,3 +27,10 @@ to stdout. It would make sense to run this script with cron.
   check any of the rate limiting information. So, you might run into rate
   limits if you (1) Run the script too often (2) are a member of a large
   number of groups with a large number of upcoming events.
+
+## Adding meetup group calendars to Google calendar
+
+* To add the entire calendar for a group to your Google calendar to automatically see events as they are created,
+  follow the instructions at http://visihow.com/Use_webcal_url_to_add_a_calendar_to_google_calendar for adding a url,
+  and for each group add the url webcal://www.meetup.com/{THE GROUP NAME}/events/ical
+  For www.meetup.com/bleeding-edge-web/events/, add webcal://www.meetup.com/bleeding-edge-web/events/ical
